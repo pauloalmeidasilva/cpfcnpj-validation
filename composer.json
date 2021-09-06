@@ -1,0 +1,18 @@
+{
+    "name": "pauloalmeidasilva/cpfcnpj-validation",
+    "description": "Biblioteca para validação de CPFs e CNPJs.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paulo",
+            "email": "paulocdjsilva@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
