@@ -4,12 +4,12 @@ Este validador foi criado para uso próprio, mas devido a sua grande nacessidade
 
 Para utilizar é fácil, basta seguir os passos abaixo:
 
-1. Baixe o repositório via Composer
+* Baixe o repositório via Composer
 ```
 composer require pauloalmeidasilva/cpfcnpj-validation
 ```
 
-2. Para CPF 
+* Para CPF 
 ```
 <?php
 require "../vendor/autoload.php";
@@ -20,7 +20,7 @@ var_dump(Cpf::validate('986.454.880-86'));
 
 ```
 
-3. Para CNPJ
+* Para CNPJ
 ```
 <?php
 require "../vendor/autoload.php";
