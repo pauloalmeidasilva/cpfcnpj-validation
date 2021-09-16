@@ -2,6 +2,17 @@
     "name": "pauloalmeidasilva/cpfcnpj-validation",
     "description": "Biblioteca para validação de CPFs e CNPJs.",
     "license": "MIT",
+    "keywords": [
+        "Validation",
+        "CNPJ",
+        "CPF",
+        "pt-BR",
+        "Brasil",
+        "Validação",
+        "Brazil",
+        "Documentação",
+        "Documentation"
+    ]
     "autoload": {
         "psr-4": {
             "Src\\": "src/"
