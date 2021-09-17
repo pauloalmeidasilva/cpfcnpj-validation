@@ -12,7 +12,7 @@
         "Brazil",
         "Documentação",
         "Documentation"
-    ]
+    ],
     "autoload": {
         "psr-4": {
             "Src\\": "src/"
