@@ -5,10 +5,11 @@ Este validador foi criado para uso próprio, mas devido a sua grande nacessidade
 ## Instalação
 Para baixar é fácil, basta copiar o comando abaixo e utilizálo no terminal:
 
-* Baixe o repositório via Composer
+Baixe o repositório via Composer
 ```
 composer require pauloalmeidasilva/cpfcnpj-validation
 ```
+
 ## Utilização
 
 * Para CPF 
@@ -34,5 +35,9 @@ var_dump(Cnpj::validate('64.123.337/0001-79'));
 ```
 
 Ele retornará **TRUE** caso seja válido ou **FALSE** caso seja inválido.
+
+## Arquivos de Exemplo
+
+Na pasta example há arquivos que exemplificam como a biblioteca funciona.
 
 Espero que seja de bom uso para todos!!!
