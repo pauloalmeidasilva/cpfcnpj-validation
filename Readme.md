@@ -1,13 +1,15 @@
 # Validador de CPF e CNPJ
 
-Este validador foi criado para uso próprio, mas devido a sua grande nacessidade em aplicações resolvi disponibilizá-lo gratuitamente.
+Este validador foi criado para uso próprio, mas devido a sua grande nacessidade em aplicações resolvi disponibilizá-lo gratuitamente. O mais interessante é que a biblioteca é simples, leve (2,3MB com os arquivos de exemplo) e direto ao ponto.
 
-Para utilizar é fácil, basta seguir os passos abaixo:
+## Instalação
+Para baixar é fácil, basta copiar o comando abaixo e utilizálo no terminal:
 
 * Baixe o repositório via Composer
 ```
 composer require pauloalmeidasilva/cpfcnpj-validation
 ```
+## Utilização
 
 * Para CPF 
 ```
