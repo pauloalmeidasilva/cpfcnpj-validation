@@ -35,6 +35,58 @@
 		}
 
 		/**
+		 * Brazilian-portuguese: Este método é responsável por gerar CPF. Este retorno pode ser formatado (padrão) ou não.
+		 * English: This method is responsible for generating CPF. This return can be formatted (default) or not.
+		 * 
+		 * @param Bollean formatting
+		 * @return String
+		 */
+		public static function generate(bool $formatting = true): string
+		{
+			// New CPF
+			$cpf = "";
+
+			// Generating the first 8 digits of the CPF
+			for($i = 0; $i < 9; $i++){
+				$cpf .= rand(0, 9);
+			}
+
+			// Obtaining DV
+			$cpf = self::DVGenerate($cpf);
+			$cpf = self::DVGenerate($cpf);
+
+			// Returning the CPF
+			return $formatting ? self::formate($cpf) : $cpf;
+		}
+
+		/**
+		 * Brazilian-portuguese: Este método é responsável por formatar um CPF
+		 * English: This method is responsible for formatting a CPF
+		 * 
+		 * @param String cpf
+		 * @return String
+		 */
+		public static function formate(string $cpf): string
+		{
+			// Variables
+			$newcpf = [];
+			$newcpf2 = "";
+
+			// Splitting the CPF string
+			$newcpf[] = substr($cpf, 0, 3);
+			$newcpf[] = substr($cpf, 3, 3);
+			$newcpf[] = substr($cpf, 6, 3);
+			$newcpf2 = substr($cpf, 9, 2);
+
+			// Concatenating the CPF with the formatting
+			$cpfFormatted = implode(".", $newcpf);
+			$cpfFormatted .= "-" . $newcpf2;
+
+			// Returning the CPF formatted
+			return $cpfFormatted;
+		}
+
+		/**
 		 * Brazilian-portuguese: Este método é responsável por gerar o dígito verificador
 		 * English: This method is responsible for generating the check digit
 		 * 
