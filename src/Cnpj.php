@@ -35,6 +35,63 @@
 		}
 
 		/**
+		 * Brazilian-portuguese: Este método é responsável por gerar CNPJ. Este retorno pode ser formatado (padrão) ou não.
+		 * English: This method is responsible for generating CNPJ. This return can be formatted (default) or not.
+		 * 
+		 * @param Bollean formatting
+		 * @return String
+		 */
+		public static function generate(bool $formatting = true): string
+		{
+			// New CNPJ
+			$cnpj = "";
+
+			// Generating the first 8 digits of the CNPJ
+			for($i = 0; $i < 8; $i++){
+				$cnpj .= rand(0, 9);
+			}
+
+			// Concatenating the Matriz/Filial string
+			$cnpj .= "0001";
+
+			// Obtaining DV
+			$cnpj = self::DVGenerate($cnpj);
+			$cnpj = self::DVGenerate($cnpj);
+
+			// Returning the CNPJ
+			return $formatting ? self::formate($cnpj) : $cnpj;
+		}
+
+		/**
+		 * Brazilian-portuguese: Este método é responsável por formatar um CNPJ
+		 * English: This method is responsible for formatting a CNPJ
+		 * 
+		 * @param String cnpj
+		 * @return String
+		 */
+		public static function formate(string $cnpj): string
+		{
+			// Variables
+			$newCnpj = [];
+			$newCnpj2 = [];
+
+			// Splitting the CNPJ string
+			$newCnpj[] = substr($cnpj, 0, 2);
+			$newCnpj[] = substr($cnpj, 2, 3);
+			$newCnpj[] = substr($cnpj, 5, 3);
+			$newCnpj2[] = substr($cnpj, 8, 4);
+			$newCnpj2[] = substr($cnpj, 12, 2);
+
+			// Concatenating the CNPJ with the formatting
+			$cnpjFormatted = implode(".", $newCnpj);
+			$cnpjFormatted .= "/";
+			$cnpjFormatted .= implode("-", $newCnpj2);
+
+			// Returning the CNPJ formatted
+			return $cnpjFormatted;
+		}
+
+		/**
 		 * Brazilian-portuguese: Este método é responsável por gerar o dígito verificador
 		 * English: This method is responsible for generating the check digit
 		 * 
