@@ -1,43 +1,57 @@
-# Validador de CPF e CNPJ
+# cpfcnpj-validation
 
-Este validador foi criado para uso próprio, mas devido a sua grande nacessidade em aplicações resolvi disponibilizá-lo gratuitamente. O mais interessante é que a biblioteca é simples, leve (2,3MB com os arquivos de exemplo) e direto ao ponto.
+Biblioteca leve para validação e geração de CPF e CNPJ (pt-BR).
 
-## Instalação
-Para baixar é fácil, basta copiar o comando abaixo e utilizálo no terminal:
+**Recursos principais**
+- Validação de CPF e CNPJ via `Src\\Validator::validate(string): bool` (aceita formatos com ou sem pontuação).
+- Geração de CPF e CNPJ via `Src\\Cpf::generate()` e `Src\\Cnpj::generate()`.
+- Formatação e sanitização via `Src\\Formatter`.
+- Exemplos prontos em `example/` e testes automatizados (`phpunit`).
 
-Baixe o repositório via Composer
-```
+**Requisitos**
+- PHP 8.0 ou superior
+- Composer
+
+**Instalação (usando Composer)**
+
+```bash
 composer require pauloalmeidasilva/cpfcnpj-validation
 ```
 
-## Utilização
+Ou, se estiver trabalhando com o repositório localmente:
 
-* Para CPF 
+```bash
+composer install
 ```
+
+Uso (exemplos rápidos)
+
+- Validar CPF/CNPJ (aceita pontuação ou não):
+
+```php
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . '/vendor/autoload.php';
 
-Use Src\Cpf;
+use Src\\Validator;
 
-var_dump(Cpf::validate('986.454.880-86'));
-
+var_dump(Validator::validate('529.982.247-25')); // true
+var_dump(Validator::validate('04252011000110')); // true (CNPJ sem pontuação)
 ```
 
-* Para CNPJ
-```
+- Gerar e validar (ex.: CPF):
+
+```php
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . '/vendor/autoload.php';
 
-Use Src\Cnpj;
+use Src\\Cpf;
+use Src\\Validator;
 
-var_dump(Cnpj::validate('64.123.337/0001-79'));
+$cpf = Cpf::generate();            // formatado por padrão
+$cpfRaw = Cpf::generate(false);    // sem formatação
 
+var_dump($cpf);
+var_dump(Validator::validate($cpf));
 ```
 
-Ele retornará **TRUE** caso seja válido ou **FALSE** caso seja inválido.
-
-## Arquivos de Exemplo
-
-Na pasta example há arquivos que exemplificam como a biblioteca funciona.
-
-Espero que seja de bom uso para todos!!!
+- Formatar / sanitizar com `Formatter`:

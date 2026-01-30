@@ -1,36 +1,27 @@
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 
-Use Src\Cpf;
+use Src\Cpf;
+use Src\Validator;
+use Src\Formatter;
 
-echo "\n\n";
-echo "==========================================================\n";
-echo "Generating formatted CPF\n";
-echo "==========================================================\n";
+echo PHP_EOL . "=== CPF CLI Example ===" . PHP_EOL;
+
+echo "\nGenerating formatted CPF:\n";
 $cpf = Cpf::generate();
+echo "CPF: {$cpf}\n";
+echo "Formatted: " . Formatter::formatCpf($cpf) . "\n";
+echo "Valid? " . (Validator::validate($cpf) ? 'yes' : 'no') . "\n";
 
-var_dump($cpf);
-var_dump(cpf::validate($cpf));
-
-echo "\n\n";
-echo "==========================================================\n";
-echo "Generating unformatted CPF\n";
-echo "==========================================================\n";
+echo "\nGenerating unformatted CPF:\n";
 $cpf = Cpf::generate(false);
+echo "CPF (raw): {$cpf}\n";
+echo "Formatted: " . Formatter::formatCpf($cpf) . "\n";
+echo "Valid? " . (Validator::validate($cpf) ? 'yes' : 'no') . "\n";
 
-var_dump($cpf);
-var_dump(cpf::formate($cpf));
-var_dump(cpf::validate($cpf));
-
-echo "\n\n";
-echo "==========================================================\n";
-echo "CPF 790.055.670-23\n";
-echo "==========================================================\n";
-var_dump(Cpf::validate('790.055.670-23'));
-
-echo "\n\n";
-echo "==========================================================\n";
-echo "CPF 790.055.670-29\n";
-echo "==========================================================\n";
-var_dump(Cpf::validate('790.055.670-29'));
+echo "\nCheck known CPFs:\n";
+$tests = ['790.055.670-23', '790.055.670-29', '529.982.247-25'];
+foreach ($tests as $t) {
+	echo "{$t} -> " . (Validator::validate($t) ? 'valid' : 'invalid') . "\n";
+}
 

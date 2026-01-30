@@ -1,38 +1,29 @@
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 
-Use Src\Cnpj;
+use Src\Cnpj;
+use Src\Validator;
+use Src\Formatter;
 
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "Generating formatted CNPJ<br>";
-echo "==========================================================<br>";
+echo "<h3>CNPJ HTML Example</h3>";
+echo "<pre>";
+
+echo "Generating formatted CNPJ:\n";
 $cnpj = Cnpj::generate();
+echo "CNPJ: {$cnpj}\n";
+echo "Formatted: " . Formatter::formatCnpj($cnpj) . "\n";
+echo "Valid? " . (Validator::validate($cnpj) ? 'yes' : 'no') . "\n";
 
-var_dump($cnpj);
-echo "<br>";
-var_dump(Cnpj::validate($cnpj));
-
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "Generating unformatted CNPJ<br>";
-echo "==========================================================<br>";
+echo "\nGenerating unformatted CNPJ:\n";
 $cnpj = Cnpj::generate(false);
+echo "CNPJ (raw): {$cnpj}\n";
+echo "Formatted: " . Formatter::formatCnpj($cnpj) . "\n";
+echo "Valid? " . (Validator::validate($cnpj) ? 'yes' : 'no') . "\n";
 
-var_dump($cnpj);
-echo "<br>";
-var_dump(Cnpj::formate($cnpj));
-echo "<br>";
-var_dump(Cnpj::validate($cnpj));
+echo "\nCheck known CNPJs:\n";
+$tests = ['64.123.337/0001-79', '64.123.337/0002-79'];
+foreach ($tests as $t) {
+	echo "{$t} -> " . (Validator::validate($t) ? 'valid' : 'invalid') . "\n";
+}
 
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "CNPJ 64.123.337/0001-79<br>";
-echo "==========================================================<br>";
-var_dump(Cnpj::validate('64.123.337/0001-79'));
-
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "CNPJ 64.123.337/0002-79<br>";
-echo "==========================================================<br>";
-var_dump(Cnpj::validate('64.123.337/0002-79'));
+echo "</pre>";

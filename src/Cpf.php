@@ -13,25 +13,7 @@
 		 */
 		public static function validate(string $cpf): bool
 		{
-			// CPF score cleaning
-			$cpf = preg_replace('/\D/', '', $cpf);
-
-			// CPF Size Verification
-			if(strlen($cpf) < 11){
-				return false;
-			}
-
-			// False Positive Verification
-			if(self::invalidCpf($cpf)){
-				return false;
-			}
-
-			// Obtaining CPF for validation
-			$cpfValidacao = self::DVGenerate(substr($cpf, 0, 9));
-			$cpfValidacao = self::DVGenerate($cpfValidacao);
-
-			// Validation
-			return ($cpf == $cpfValidacao);
+			return Validator::validate($cpf);
 		}
 
 		/**

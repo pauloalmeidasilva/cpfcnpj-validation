@@ -1,39 +1,30 @@
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 
-Use Src\Cpf;
+use Src\Cpf;
+use Src\Validator;
+use Src\Formatter;
 
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "Generating formatted CPF<br>";
-echo "==========================================================<br>";
+echo "<h3>CPF HTML Example</h3>";
+echo "<pre>";
+
+echo "Generating formatted CPF:\n";
 $cpf = Cpf::generate();
+echo "CPF: {$cpf}\n";
+echo "Formatted: " . Formatter::formatCpf($cpf) . "\n";
+echo "Valid? " . (Validator::validate($cpf) ? 'yes' : 'no') . "\n";
 
-var_dump($cpf);
-echo "<br>";
-var_dump(cpf::validate($cpf));
-
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "Generating unformatted CPF<br>";
-echo "==========================================================<br>";
+echo "\nGenerating unformatted CPF:\n";
 $cpf = Cpf::generate(false);
+echo "CPF (raw): {$cpf}\n";
+echo "Formatted: " . Formatter::formatCpf($cpf) . "\n";
+echo "Valid? " . (Validator::validate($cpf) ? 'yes' : 'no') . "\n";
 
-var_dump($cpf);
-echo "<br>";
-var_dump(cpf::formate($cpf));
-echo "<br>";
-var_dump(cpf::validate($cpf));
+echo "\nCheck known CPFs:\n";
+$tests = ['790.055.670-23', '790.055.670-29', '529.982.247-25'];
+foreach ($tests as $t) {
+	echo "{$t} -> " . (Validator::validate($t) ? 'valid' : 'invalid') . "\n";
+}
 
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "CPF 790.055.670-23<br>";
-echo "==========================================================<br>";
-var_dump(Cpf::validate('790.055.670-23'));
-
-echo "<br><br>";
-echo "==========================================================<br>";
-echo "CPF 790.055.670-29<br>";
-echo "==========================================================<br>";
-var_dump(Cpf::validate('790.055.670-29'));
+echo "</pre>";
 

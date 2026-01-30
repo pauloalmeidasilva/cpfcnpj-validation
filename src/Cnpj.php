@@ -13,25 +13,7 @@
 		 */
 		public static function validate(string $cnpj): bool
 		{
-			// CNPJ score cleaning
-			$cnpj = preg_replace('/\D/', '', $cnpj);
-
-			// CNPJ Size Verification
-			if(strlen($cnpj) < 14){
-				return false;
-			}
-
-			// False Positive Verification
-			if(self::invalidCnpj($cnpj)){
-				return false;
-			}
-
-			// Obtaining cnpj for validation
-			$cnpjValidacao = self::DVGenerate(substr($cnpj, 0, 12));
-			$cnpjValidacao = self::DVGenerate($cnpjValidacao);
-
-			// Validation
-			return ($cnpj == $cnpjValidacao);
+			return Validator::validate($cnpj);
 		}
 
 		/**
